@@ -1,0 +1,40 @@
+@prefix ex:    <http://example.com/ns#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+[ a       <http://www.w3.org/ns/shacl#ValidationReport> ;
+  <http://www.w3.org/ns/shacl#conforms>
+          false ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    ex:Sensor1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Property may only have 1 value, but found 2" ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    ex:temperature ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#MaxCountConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    [] 
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    ex:Sensor1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Predicate ex:hello is not allowed (closed shape)" ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    ex:hello ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#ClosedConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    ex:TemperatureShape ;
+            <http://www.w3.org/ns/shacl#value>
+                    88
+          ]
+] .
