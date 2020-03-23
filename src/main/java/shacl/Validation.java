@@ -15,9 +15,14 @@ import org.topbraid.shacl.vocabulary.SH;
 public class Validation {
 
 	public static void main(String[] args) {
-		try {
+		try {		
+
+			String FUESKI_LOCAL_ENDPOINT_DATA = "http://localhost:3030/data_graph";
+			String FUESKI_LOCAL_ENDPOINT_SHAPE = "http://localhost:3030/shape_graph";
+			
 			Path path = Paths.get(".").toAbsolutePath().normalize();
 
+			/*
 			String data = path.toFile().getAbsolutePath() + "/src/main/resources/temperature.ttl";
 			String shape = path.toFile().getAbsolutePath() + "/src/main/resources/temperatureShape.ttl";
 
@@ -26,16 +31,19 @@ public class Validation {
 				throw new IllegalArgumentException("File: " + data + " not found");
 			}
 
-			InputStream inShape = FileManager.get().open(data);
+			InputStream inShape = FileManager.get().open(shape);
 			if (inShape == null) {
 				throw new IllegalArgumentException("File: " + inShape + " not found");
 			}
+			*/
 
 			Model dataModel = ModelFactory.createDefaultModel();
 			Model shapeModel = ModelFactory.createDefaultModel();
+
+			dataModel.read(FUESKI_LOCAL_ENDPOINT_DATA);
+			shapeModel.read(FUESKI_LOCAL_ENDPOINT_SHAPE);
 			
-			dataModel.read(data, null);
-			shapeModel.read(shape, null);
+			
 			Resource reportResource = ValidationUtil.validateModel(dataModel, shapeModel, true);
 			boolean conforms = reportResource.getProperty(SH.conforms).getBoolean();
 			System.out.println("Conforms = " + conforms);

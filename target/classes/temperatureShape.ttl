@@ -5,7 +5,8 @@
 
 ex:TemperatureShape
   a sh:NodeShape ;
-  sh:targetClass ex:Sensor ;    
+  sh:targetClass ex:Sensor ;   
+  sh:targetNode ex:Sensor2 ;
   sh:property [                 # _:b1
     sh:path ex:temperature ;           
     sh:maxCount 1 ;
@@ -16,6 +17,26 @@ ex:TemperatureShape
     sh:maxCount 1 ;
     sh:minCount 1 ;
     sh:datatype xsd:decimal ;
+  ] ;
+  sh:closed true ;
+  sh:ignoredProperties ( rdf:type ) .
+  
+  
+ex:LampShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Lamp ;   
+  sh:property [               
+    sh:path ex:id ;       
+	sh:name "company generated id of the lamp" ;
+	sh:description "The id including numbers and characters" ;    
+    sh:maxCount 1 ;        
+    sh:minCount 1 ;
+  ] ;
+  sh:property [                
+    sh:path ex:status ;         
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:datatype xsd:String ;
   ] ;
   sh:closed true ;
   sh:ignoredProperties ( rdf:type ) .
